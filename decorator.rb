@@ -1,5 +1,12 @@
-class Nameable
+require_relative 'component'
+
+class Decorator < Nameable
+  def initialize(namable)
+    super
+    @namable = namable
+  end
+
   def correct_name
-    raise NotImplementedError, "#{self.class} has not implemented method '#{__method__}'"
+    @namable.correct_name
   end
 end
