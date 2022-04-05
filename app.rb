@@ -1,25 +1,25 @@
-class App
+module App
   def list_all_books
-    'books'
+    puts 'books'
   end
 
   def list_all_people
-    'all people'
+    puts 'all people'
   end
 
   def create_person
-    'create a person'
+    puts 'create a person'
   end
 
   def create_book
-    'create a book'
+    puts 'create a book'
   end
 
   def create_rental
-    'create a rental'
+    puts 'create a rental'
   end
 
   def list_rentals(id)
-    "rentals for person #{id}"
+    puts "rentals for person #{id}"
   end
 end
