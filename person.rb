@@ -12,6 +12,10 @@ class Person < Nameable
     @rentals = []
   end
 
+  def add_rental(book, date)
+    @rentals << Rental.new(self, book, date)
+  end
+
   def can_use_services?
     of_age?
   end
