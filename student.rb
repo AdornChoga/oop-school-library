@@ -2,9 +2,10 @@ require_relative 'person'
 
 class Student < Person
   attr_reader :classroom
+
   def initialize(age, name)
     super(age, name)
-    @classroom
+    @classroom = nil
   end
 
   def play_hooky
