@@ -2,14 +2,15 @@ require './decorators/person/correct_name'
 
 class Person < Nameable
   attr_accessor :name, :age
-  attr_reader :id, :rentals
+  attr_reader :id, :rentals, :parent_permission
 
-  def initialize(age, name = 'Unknown', _parent_permission: true)
+  def initialize(age, name = 'Unknown', parent_permission: true)
     super()
     @id = Random.rand(1..1000)
     @name = name
     @age = age
     @rentals = []
+    @parent_permission = !!parent_permission
   end
 
   def add_rental(book, date)
