@@ -1,9 +1,16 @@
 require './student'
 require './teacher'
+require './book'
 
 class App
-  def list_all_books
-    puts 'books'
+  def list_all_books(books)
+    if books.empty?
+      puts 'No book added yet'
+      return
+    end
+    books.map do |book|
+      puts "Title: #{book.title}, Author: #{book.author}"
+    end
   end
 
   def list_all_people(people)
@@ -52,8 +59,14 @@ class App
     end
   end
 
-  def create_book
-    puts 'create a book'
+  def create_book(books)
+    print 'Title: '
+    title = gets.chomp
+    print 'Author: '
+    author = gets.chomp
+    book = Book.new(title, author)
+    books << book
+    puts 'Book created successfully'
   end
 
   def create_rental

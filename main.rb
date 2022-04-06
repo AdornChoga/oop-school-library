@@ -2,7 +2,7 @@ require './app'
 
 puts 'Welcome to School Library App'
 
-data = { people: [] }
+data = { people: [], books: [] }
 
 def main(data)
   puts ''
@@ -19,23 +19,17 @@ def main(data)
 
   case option
   when '1'
-    App.new.list_all_books
-    exit
+    App.new.list_all_books(data[:books])
   when '2'
     App.new.list_all_people(data[:people])
-    exit
   when '3'
     App.new.create_person(data[:people])
-    exit
   when '4'
-    App.new.create_book
-    exit
+    App.new.create_book(data[:books])
   when '5'
     App.new.create_rental
-    exit
   when '6'
     App.new.list_rentals(10)
-    exit
   when '7'
     puts ''
     puts '=> Exiting App...'
