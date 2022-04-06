@@ -10,7 +10,7 @@ class App
       return
     end
     books.map do |book|
-      puts "Title: #{book.title}, Author: #{book.author}"
+      puts "Title: \"#{book.title}\", Author: #{book.author}"
     end
   end
 
@@ -105,7 +105,16 @@ class App
     puts 'Rental Created successfully'
   end
 
-  def list_rentals(id)
-    puts "rentals for person #{id}"
+  def list_rentals(people)
+    print 'ID of person: '
+    person_id = gets.chomp
+    people.map do |person|
+      next unless person.id == person_id.to_i
+
+      puts 'Rentals:'
+      person.rentals.each do |rental|
+        puts "Date: #{rental.date}, Book: \"#{rental.book.title}\" by #{rental.book.author}"
+      end
+    end
   end
 end

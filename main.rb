@@ -6,14 +6,16 @@ data = { people: [], books: [] }
 
 def main(data)
   puts ''
-  puts 'Please choose an option by entering a number'
-  puts '1 - List all books'
-  puts '2 - List all people'
-  puts '3 - Create a person'
-  puts '4 - Create a book'
-  puts '5 - Create a rental'
-  puts '6 - List all rentals for a given person id'
-  puts '7 - Exit'
+  options = 'Please choose an option by entering a number
+  1 - List all books
+  2 - List all people
+  3 - Create a person
+  4 - Create a book
+  5 - Create a rental
+  6 - List all rentals for a given person id
+  7 - Exit'
+
+  puts options
 
   option = gets.chomp
 
@@ -29,13 +31,13 @@ def main(data)
   when '5'
     App.new.create_rental(data[:books], data[:people])
   when '6'
-    App.new.list_rentals(10)
+    App.new.list_rentals(data[:people])
   when '7'
     puts ''
-    puts '=> Exiting App...'
+    puts '=> Thank you for using this app!'
     return
   else
-    puts '=> Invalid option'
+    puts '=> Invalid option!'
   end
 
   main(data)
