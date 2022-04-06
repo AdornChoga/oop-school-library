@@ -27,7 +27,7 @@ def main(data)
   when '4'
     App.new.create_book(data[:books])
   when '5'
-    App.new.create_rental
+    App.new.create_rental(data[:books], data[:people])
   when '6'
     App.new.list_rentals(10)
   when '7'

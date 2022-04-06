@@ -1,6 +1,7 @@
 require './student'
 require './teacher'
 require './book'
+require './rental'
 
 class App
   def list_all_books(books)
@@ -69,8 +70,39 @@ class App
     puts 'Book created successfully'
   end
 
-  def create_rental
-    puts 'create a rental'
+  def create_rental(books, people)
+    if books.empty?
+      puts 'Oops! Create a book first'
+      return
+    end
+    if people.empty?
+      puts 'Oops! Create a person first'
+      return
+    end
+
+    puts 'Select a book from the following list by number'
+    books.map.with_index do |book, index|
+      puts "#{index}) Title: #{book.title}, Author: #{book.author}"
+    end
+
+    book_index = gets.chomp.to_i
+
+    puts ''
+
+    puts 'Select a person from the following list by number'
+    people.map.with_index do |person, index|
+      puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+    end
+
+    person_index = gets.chomp.to_i
+
+    puts ''
+
+    print 'Date: '
+    date = gets.chomp
+
+    Rental.new(people[person_index], books[book_index], date)
+    puts 'Rental Created successfully'
   end
 
   def list_rentals(id)
