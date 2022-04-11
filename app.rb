@@ -5,58 +5,52 @@ require './rental'
 
 class App
   def list_all_books(books)
-    if books.empty?
-      puts 'No book added yet'
-      return
-    end
-    books.map do |book|
-      puts "Title: \"#{book.title}\", Author: #{book.author}"
-    end
+    puts 'No book added yet' if books.empty?
+    books.map { |book| puts "Title: \"#{book.title}\", Author: #{book.author}" }
   end
 
   def list_all_people(people)
-    if people.empty?
-      puts 'No person record created yet'
+    puts 'No person record created yet' if people.empty?
+    people.map { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
+  end
+
+  def create_student(age, name, people)
+    print 'Has parent permission to? [Y/N]: '
+    permission = gets.chomp
+    yes_answers = %w[y yes]
+    no_answers = %w[n no]
+    if yes_answers.include? permission.downcase
+      student = Student.new(age, name, true)
+    elsif no_answers.include? permission.downcase
+      student = Student.new(age, name, false)
+    else
+      puts '=> Invalid input for permission'
       return
     end
-    people.map do |person|
-      puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
-    end
+    people << student
+    puts 'Person created successfully'
+  end
+
+  def create_teacher(age, name, people)
+    print 'Specialization: '
+    specialization = gets.chomp
+    teacher = Teacher.new(age, name, specialization)
+    people << teacher
+    puts 'Person created successfully'
   end
 
   def create_person(people)
     print 'Do you want to creater a student (1) or a teacher (2)? [Input the number]: '
     option = gets.chomp
+    print 'Age: '
+    age = gets.chomp
+    print 'Name: '
+    name = gets.chomp
     case option
     when '1'
-      print 'Age: '
-      age = gets.chomp
-      print 'Name: '
-      name = gets.chomp
-      print 'Has parent permission to? [Y/N]: '
-      permission = gets.chomp
-      yes_answers = %w[y yes]
-      no_answers = %w[n no]
-      if yes_answers.include? permission.downcase
-        student = Student.new(age, name, true)
-      elsif no_answers.include? permission.downcase
-        student = Student.new(age, name, false)
-      else
-        puts '=> Invalid input for permission'
-        return
-      end
-      people << student
-      puts 'Person created successfully'
+      create_student(age, name, people)
     when '2'
-      print 'Age: '
-      age = gets.chomp
-      print 'Name: '
-      name = gets.chomp
-      print 'Specialization: '
-      specialization = gets.chomp
-      teacher = Teacher.new(age, name, specialization)
-      people << teacher
-      puts 'Person created successfully'
+      create_teacher(age, name, people)
     end
   end
 
