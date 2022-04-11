@@ -71,7 +71,9 @@ class App
     puts ''
 
     puts 'Select a person from the following list by number'
-    people.map.with_index { |person, index| puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
+    people.map.with_index do |person, index|
+      puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+    end
     person_index = gets.chomp.to_i
     puts ''
 
@@ -90,7 +92,7 @@ class App
     elsif people.empty?
       puts 'Create person first'
     else
-     add_rental(books, people)
+      add_rental(books, people)
     end
   end
 
