@@ -6,7 +6,7 @@ data = { people: [], books: [] }
 
 def main(data)
   puts ''
-  options = 'Please choose an option by entering a number
+  puts 'Please choose an option by entering a number
   1 - List all books
   2 - List all people
   3 - Create a person
@@ -14,8 +14,6 @@ def main(data)
   5 - Create a rental
   6 - List all rentals for a given person id
   7 - Exit'
-
-  puts options
 
   option = gets.chomp
 
