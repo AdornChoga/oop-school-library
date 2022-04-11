@@ -9,17 +9,18 @@ module People
 
   def create_student(age, name, people)
     print 'Has parent permission to? [Y/N]: '
-    permission = gets.chomp
-    yes_answers = %w[y yes]
-    no_answers = %w[n no]
-    if yes_answers.include? permission.downcase
-      student = Student.new(age, name, true)
-    elsif no_answers.include? permission.downcase
-      student = Student.new(age, name, false)
+    permission = gets.chomp.downcase
+    permit = ''
+    case permission
+    when 'y', 'yes'
+      permit = true
+    when 'n', 'no'
+      permit = false
     else
       puts '=> Invalid input for permission'
-      return
+      return create_student(age, name, people)
     end
+    student = Student.new(age, name, permit)
     people << student
     puts 'Person created successfully'
   end
