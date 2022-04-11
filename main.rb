@@ -19,17 +19,17 @@ end
 def select_option(option, data)
   case option
   when '1'
-    Books.new.list_all_books(data[:books])
+    App.new.list_all_books(data[:books])
   when '2'
-    People.new.list_all_people(data[:people])
+    App.new.list_all_people(data[:people])
   when '3'
-    People.new.create_person(data[:people])
+    App.new.create_person(data[:people])
   when '4'
-    Books.new.create_book(data[:books])
+    App.new.create_book(data[:books])
   when '5'
-    Rentals.new.create_rental(data[:books], data[:people])
+    App.new.create_rental(data[:books], data[:people])
   when '6'
-    Rentals.new.list_rentals(data[:people])
+    App.new.list_rentals(data[:people])
   when '7'
     puts ''
     puts '=> Thank you for using this app!'
