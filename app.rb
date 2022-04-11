@@ -3,12 +3,24 @@ require './teacher'
 require './book'
 require './rental'
 
-class App
+class Books
   def list_all_books(books)
     puts 'No book added yet' if books.empty?
     books.map { |book| puts "Title: \"#{book.title}\", Author: #{book.author}" }
   end
 
+  def create_book(books)
+    print 'Title: '
+    title = gets.chomp
+    print 'Author: '
+    author = gets.chomp
+    book = Book.new(title, author)
+    books << book
+    puts 'Book created successfully'
+  end
+end
+
+class People
   def list_all_people(people)
     puts 'No person record created yet' if people.empty?
     people.map { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
@@ -53,17 +65,9 @@ class App
       create_teacher(age, name, people)
     end
   end
+end
 
-  def create_book(books)
-    print 'Title: '
-    title = gets.chomp
-    print 'Author: '
-    author = gets.chomp
-    book = Book.new(title, author)
-    books << book
-    puts 'Book created successfully'
-  end
-
+class Rentals
   def add_rental(books, people)
     puts 'Select a book from the following list by number'
     books.map.with_index { |book, index| puts "#{index}) Title: #{book.title}, Author: #{book.author}" }
