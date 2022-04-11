@@ -27,6 +27,13 @@ This is an app to record what books are in the library and who borrows them. The
 - Twitter: [@adornchoga](https://twitter.com/adorn_choga)
 - LinkedIn: [@adornchoga](https://www.linkedin.com/in/adorn-choga)
 
+👤 **Hammas**
+
+- GitHub: [@HAMMAS-SALEEM](https://github.com/HAMMAS-SALEEM)
+- Twitter: [@HammasSaleem4](https://twitter.com/HammasSaleem4)
+- LinkedIn: [HAMMAS SALEEM](https://www.linkedin.com/in/hammas-saleem) 
+
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
