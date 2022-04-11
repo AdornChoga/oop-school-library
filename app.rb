@@ -64,32 +64,15 @@ class App
     puts 'Book created successfully'
   end
 
-  def create_rental(books, people)
-    if books.empty?
-      puts 'Oops! Create a book first'
-      return
-    end
-    if people.empty?
-      puts 'Oops! Create a person first'
-      return
-    end
-
+  def add_rental(books, people)
     puts 'Select a book from the following list by number'
-    books.map.with_index do |book, index|
-      puts "#{index}) Title: #{book.title}, Author: #{book.author}"
-    end
-
+    books.map.with_index { |book, index| puts "#{index}) Title: #{book.title}, Author: #{book.author}" }
     book_index = gets.chomp.to_i
-
     puts ''
 
     puts 'Select a person from the following list by number'
-    people.map.with_index do |person, index|
-      puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
-    end
-
+    people.map.with_index { |person, index| puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
     person_index = gets.chomp.to_i
-
     puts ''
 
     print 'Date: '
@@ -97,6 +80,18 @@ class App
 
     Rental.new(people[person_index], books[book_index], date)
     puts 'Rental Created successfully'
+  end
+
+  def create_rental(books, people)
+    if books.empty? & people.empty?
+      puts 'Create book and person'
+    elsif books.empty?
+      puts 'Create book first'
+    elsif people.empty?
+      puts 'Create person first'
+    else
+     add_rental(books, people)
+    end
   end
 
   def list_rentals(people)
