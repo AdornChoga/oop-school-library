@@ -1,7 +1,9 @@
 require './student'
 require './teacher'
+require_relative 'get_user_input'
 
 module People
+  include UserInput
   def list_all_people(people)
     puts 'No person record created yet' if people.empty?
     people.map { |person| puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}" }
@@ -26,9 +28,8 @@ module People
   end
 
   def create_teacher(age, name, people)
-    print 'Specialization: '
-    specialization = gets.chomp
-    teacher = Teacher.new(age, name, specialization)
+    specialization = user_input(['Specialization'])
+    teacher = Teacher.new(age, name, specialization[0])
     people << teacher
     puts 'Person created successfully'
   end

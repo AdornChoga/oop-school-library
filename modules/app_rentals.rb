@@ -1,7 +1,8 @@
 require './rental'
 
 module Rentals
-  def add_rental(books, people)
+  include UserInput
+  def rentals_input(books, people)
     puts 'Select a book from the following list by number'
     books.map.with_index { |book, index| puts "#{index}) Title: #{book.title}, Author: #{book.author}" }
     book_index = gets.chomp.to_i
@@ -14,10 +15,13 @@ module Rentals
     person_index = gets.chomp.to_i
     puts ''
 
-    print 'Date: '
-    date = gets.chomp
+    date = user_input(['Date'])[0]
+    [person_index, book_index, date]
+  end
 
-    Rental.new(people[person_index], books[book_index], date)
+  def add_rental(books, people)
+    inputs = rentals_input(books, people)
+    Rental.new(people[inputs[0]], books[inputs[1]], inputs[2])
     puts 'Rental Created successfully'
   end
 
