@@ -2,18 +2,22 @@ require './rental'
 
 module Rentals
   include UserInput
+  def getter
+    input = gets.chomp
+    puts ''
+    input
+  end
+
   def rentals_input(books, people)
     puts 'Select a book from the following list by number'
     books.map.with_index { |book, index| puts "#{index}) Title: #{book.title}, Author: #{book.author}" }
-    book_index = gets.chomp.to_i
-    puts ''
+    book_index = getter.to_i
 
     puts 'Select a person from the following list by number'
     people.map.with_index do |person, index|
       puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
     end
-    person_index = gets.chomp.to_i
-    puts ''
+    person_index = getter.to_i
 
     date = user_input(['Date'])[0]
     [person_index, book_index, date]
@@ -38,8 +42,7 @@ module Rentals
   end
 
   def list_rentals(people)
-    print 'ID of person: '
-    person_id = gets.chomp
+    person_id = user_input(['ID of person'])[0]
     people.map do |person|
       next unless person.id == person_id.to_i
 

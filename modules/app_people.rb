@@ -10,9 +10,7 @@ module People
   end
 
   def create_student(age, name, people)
-    print 'Has parent permission to? [Y/N]: '
-    permission = gets.chomp.downcase
-    permit = ''
+    permission = user_input(['Has parent permission to? [Y/N]'])[0].downcase
     case permission
     when 'y', 'yes'
       permit = true
@@ -35,17 +33,13 @@ module People
   end
 
   def create_person(people)
-    print 'Do you want to creater a student (1) or a teacher (2)? [Input the number]: '
-    option = gets.chomp
-    print 'Age: '
-    age = gets.chomp
-    print 'Name: '
-    name = gets.chomp
-    case option
+    type_of_person_msg = 'Do you want to creater a student (1) or a teacher (2)? [Input the number]'
+    inputs = user_input([type_of_person_msg, 'Age', 'Name'])
+    case inputs[0]
     when '1'
-      create_student(age, name, people)
+      create_student(inputs[1], inputs[2], people)
     when '2'
-      create_teacher(age, name, people)
+      create_teacher(inputs[1], inputs[2], people)
     end
   end
 end
