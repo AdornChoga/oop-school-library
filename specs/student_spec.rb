@@ -38,7 +38,7 @@ describe Student do
 
     it 'should add classroom of student' do
       classrm = Classroom.new(14)
-      @adorn.add_classroom(classrm)
+      @adorn.add_classroom = classrm
       croom = @adorn.classroom
       expect(croom).to be classrm
     end
