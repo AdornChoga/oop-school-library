@@ -1,9 +1,9 @@
-require './modules/app_books'
-require './modules/app_people'
-require './modules/app_rentals'
+require './app_funcs/app_books'
+require './app_funcs/app_people'
+require './app_funcs/app_rentals'
 
 class App
-  include Books
-  include People
-  include Rentals
+  include AppBooks
+  include AppPeople
+  include AppRentals
 end
