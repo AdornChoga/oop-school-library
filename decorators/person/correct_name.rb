@@ -24,6 +24,6 @@ end
 class TrimmerDecorator < BaseDecorator
   def correct_name
     str = @nameable.correct_name
-    str[0...10] if str.length >= 10
+    str[0..9] if str.length >= 10
   end
 end
