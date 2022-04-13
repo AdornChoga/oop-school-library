@@ -1,5 +1,5 @@
-require './student'
-require './teacher'
+require './classes/student'
+require './classes/teacher'
 
 module AppPeople
   def list_all_people(people)

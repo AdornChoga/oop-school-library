@@ -1,4 +1,4 @@
-require './rental'
+require './classes/rental'
 
 module AppRentals
   def create_rental(data)

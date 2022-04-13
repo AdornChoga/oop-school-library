@@ -1,4 +1,4 @@
-require './book'
+require './classes/book'
 
 module AppBooks
   def list_all_books(books)
