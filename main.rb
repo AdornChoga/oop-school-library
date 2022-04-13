@@ -1,10 +1,12 @@
 require './app'
+require './app_funcs/data_processing'
 
 class Main
+  include ProcessData
   def initialize
-    @people = []
-    @books = []
-    @rentals = []
+    @people = populate_people
+    @books = populate_books
+    @rentals = populate_rentals(@people, @books)
   end
 
   def get_user_input(messages)
@@ -33,14 +35,14 @@ class Main
   def person_creation
     person_type_msg = 'Do you want to create a student (1) or a teacher (2)? [Input the number]'
     person_type, name, age = get_user_input([person_type_msg, 'Name', 'Age'])
-    person = { name: name, age: age, stored_people: @people }
+    person_details = { name: name, age: age, stored_people: @people }
     case person_type.to_i
     when 1
       permission = student_permission
-      App.new.create_person(person, 'student', permission)
+      App.new.create_person(person_details, 'student', permission)
     when 2
       specialization = get_user_input(['Specialization'])[0]
-      App.new.create_person(person, 'teacher', specialization)
+      App.new.create_person(person_details, 'teacher', specialization)
     else
       puts 'Invalid input for person type!'
       person_creation
@@ -78,7 +80,11 @@ class Main
       puts 'Create person first'
     else
       book_index, person_index, date = rental_inputs
-      data = { people: @people, books: @books, person: @people[person_index], book: @books[book_index], date: date }
+      data = {
+        people: @people, books: @books,
+        person_index: person_index, book_index: book_index,
+        person: @people[person_index], book: @books[book_index], date: date
+      }
       App.new.create_rental(data)
     end
   end
